@@ -32,5 +32,19 @@ function GenerateQuestions($numQuestions, $min, $max, $operation){
             'choices' => $choices
         ];
     }
+    return $questions;
+}
+
+function GenerateChoices($correctAnswer){
+    $choices = [$correctanswer]
+        while(count($choices)< 4){
+            $rasndChoice = $correctAnswer =rand (-10, 10);
+            if ($randomChoice !== $correctAnswer && !($randomChoice, $choices)){
+                $choices[]=$randomChoicee;
+            }
+        }
+        shuffle($choices);
+        return $choices;
+    }
 }
 ?>
