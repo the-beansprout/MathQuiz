@@ -25,7 +25,7 @@ function GenerateQuestions($numQuestions, $min, $max, $operation){
                 $answer = $num1 + $num2;
         }
 
-        $choices = generateQuestions($answer);
+        $choices = GenerateQuestions($answer);
         $questions[] =[
             'question' =>"$num1 $symbol $num2",
             'answer' => $answer,
