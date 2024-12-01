@@ -26,5 +26,23 @@
                     <input type="number" name="custom_max" placeholder="Max" min="1">
                 </div>
             </div>
+
+            <div class="form-group">
+                <label>Operation:</label>
+                <select name="operation" required>
+                    <option value="addition"> Addition </option>
+                    <option value="subtraction"> Subtraction </option>
+                    <option value="multiplication"> Multiplication</option>
+                </select>
+            </div>
+
+            <div class="from-group">
+                <label> Number of Questons:</label>
+                <input type="number" name="num_questions" value="5" min="1" required>
+            </div>
+
+            <button type="submit" name="start_quiz"> Start Quiz </button>
+        </from>
+    </div>
 </body>
 </html>
