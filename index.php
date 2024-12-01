@@ -1,12 +1,3 @@
-<?php
-session_start();
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' || isset($_SESSION['questions'])) {
-    header("Location: process.php");
-    exit;
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || isset($_SESSION['questions'])) {
         body{
             font-family: 'Arial', sans-serif;
             background-color: #f0f4f8;
-            dispaly: flex;
+            display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
