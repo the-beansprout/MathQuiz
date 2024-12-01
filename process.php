@@ -38,13 +38,12 @@ function GenerateQuestions($numQuestions, $min, $max, $operation){
 function GenerateChoices($correctAnswer){
     $choices = [$correctanswer]
         while(count($choices)< 4){
-            $rasndChoice = $correctAnswer =rand (-10, 10);
+            $randomChoice = $correctAnswer =rand (-10, 10);
             if ($randomChoice !== $correctAnswer && !($randomChoice, $choices)){
-                $choices[]=$randomChoicee;
+                $choices[]=$randomChoice;
             }
         }
         shuffle($choices);
         return $choices;
-    }
 }
 ?>
