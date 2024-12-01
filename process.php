@@ -76,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['start_quiz'])) {
         $_SESSION['questions'] = GenerateQuestions($numQuestions, $min, $max, $operation);
         $_SESSION['current_question'] = 0;
         $_SESSION['score'] = ['correct' => 0, 'wrong' => 0];
-    }
+}
     
     if (isset($_SESSION['questions'])) {
         $currentIndex = $_SESSION['current_question'];
@@ -172,3 +172,91 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['start_quiz'])) {
     $currentQuestion = $_SESSION['questions'][$_SESSION['current_question']];
 
     ?>
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Math Quiz</title>
+        <style>
+            body {
+                font-family: 'Arial', sans-serif;
+                background-color: #f0f4f8;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+            }
+            .quiz-container {
+                background-color: white;
+                border-radius: 10px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                padding: 30px;
+                text-align: center;
+                max-width: 400px;
+                width: 100%;
+            }
+            h2 {
+                color: #2c3e50;
+                margin-bottom: 20px;
+            }
+            .question {
+                font-size: 24px;
+                margin-bottom: 20px;
+                color: #34495e;
+            }
+            form {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+            .choice {
+                background-color: #f1f5f9;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                padding: 10px;
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+            .choice:hover {
+                background-color: #e2e8f0;
+            }
+            .choice input {
+                margin-right: 10px;
+            }
+            button {
+                background-color: #3498db;
+                color: white;
+                border: none;
+                padding: 12px;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+                margin-top: 15px;
+            }
+            button:hover {
+                background-color: #2980b9;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="quiz-container">
+            <h2>Question <?php echo $_SESSION['current_question'] + 1; ?></h2>
+            <p class="question"><?php echo $currentQuestion['question']; ?></p>
+            <form method="post">
+                <?php foreach ($currentQuestion['choices'] as $choice): ?>
+                    <label class="choice">
+                        <input type="radio" name="answer" value="<?php echo $choice; ?>" required>
+                        <?php echo $choice; ?>
+                    </label>
+                <?php endforeach; ?>
+                <button type="submit">Submit Answer</button>
+            </form>
+        </div>
+    </body>
+    </html>
+    <?php
+?>
