@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['start_quiz'])) {
                 $max = 10;
         }
 
-        $_SESSION['questions'] = generateQuestions($numQuestions, $min, $max, $operation);
+        $_SESSION['questions'] = GenerateQuestions($numQuestions, $min, $max, $operation);
         $_SESSION['current_question'] = 0;
         $_SESSION['score'] = ['correct' => 0, 'wrong' => 0];
     }
