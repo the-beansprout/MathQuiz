@@ -3,12 +3,12 @@ session_start();
 
 function GenerateQuestions($numQuestions, $min, $max, $operation){
     $questions =[];
-    for ($i =0; $i <$numQuestions; $i++){
+    for ($i =0; $i < $numQuestions; $i++){
         $num1 = rand($min, $max);
         $num2 = rand($min, $max);
 
         switch ($operation){
-            case 'addtion':
+            case 'addition':
                 $symbol = '+';
                 $answer = $num1 + $num2;
                 break;
@@ -25,8 +25,8 @@ function GenerateQuestions($numQuestions, $min, $max, $operation){
                 $answer = $num1 + $num2;
         }
 
-        $choices = GenerateQuestions($answer);
-        $questions[] =[
+        $choices = GenerateChoices($answer);
+        $questions[] = [
             'question' =>"$num1 $symbol $num2",
             'answer' => $answer,
             'choices' => $choices
@@ -34,11 +34,11 @@ function GenerateQuestions($numQuestions, $min, $max, $operation){
     }
     return $questions;
 }
-
+// Generate choice options
 function GenerateChoices($correctAnswer){
-    $choices = [$correctanswer];
+    $choices = [$correctAnswer];
     while(count($choices) < 4){
-        $randomChoice = $correctAnswer =rand (-10, 10);
+        $randomChoice = $correctAnswer + rand (-10, 10);
         if ($randomChoice !== $correctAnswer && !in_array($randomChoice, $choices)) {
             $choices[] = $randomChoice;
         }
@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['start_quiz'])) {
                 $min = 1;
                 $max = 10;
         }
-
+// Generate questions
         $_SESSION['questions'] = GenerateQuestions($numQuestions, $min, $max, $operation);
         $_SESSION['current_question'] = 0;
         $_SESSION['score'] = ['correct' => 0, 'wrong' => 0];
@@ -258,5 +258,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['start_quiz'])) {
         </div>
     </body>
     </html>
-    <?php
-?>
