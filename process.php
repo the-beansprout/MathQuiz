@@ -78,5 +78,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['start_quiz'])) {
         $_SESSION['score'] = ['correct' => 0, 'wrong' => 0];
     }
     
-
+    if (isset($_SESSION['questions'])) {
+        $currentIndex = $_SESSION['current_question'];
+    
+        // If an answer was submitted
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['answer'])) {
+            $userAnswer = intval($_POST['answer']);
+            $correctAnswer = $_SESSION['questions'][$currentIndex]['answer'];
+    
+            if ($userAnswer === $correctAnswer) {
+                $_SESSION['score']['correct']++;
+            } else {
+                $_SESSION['score']['wrong']++;
+            }
+    
+            $_SESSION['current_question']++;
+        }
 ?>
