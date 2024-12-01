@@ -36,15 +36,15 @@ function GenerateQuestions($numQuestions, $min, $max, $operation){
 }
 
 function GenerateChoices($correctAnswer){
-    $choices = [$correctanswer]
-        while(count($choices)< 4){
-            $randomChoice = $correctAnswer =rand (-10, 10);
-            if ($randomChoice !== $correctAnswer && !in_array($randomChoice, $choices)) {
-                $choices[] = $randomChoice;
-            }
+    $choices = [$correctanswer];
+    while(count($choices) < 4){
+        $randomChoice = $correctAnswer =rand (-10, 10);
+        if ($randomChoice !== $correctAnswer && !in_array($randomChoice, $choices)) {
+            $choices[] = $randomChoice;
         }
-        shuffle($choices);
-        return $choices;
+    }
+    shuffle($choices);
+    return $choices;
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['start_quiz'])) {
